@@ -1,0 +1,14 @@
+{
+    "voidtec": {
+        "sheepDebug": false,
+        "enableRemoveHullmodButton": false,
+        "enableChangeSlotButton": false,
+        "aiHullmodChance": 50,
+        "aiSlotFillChance": 50,
+
+        # Recover-Chance -> Destroy-Chance -> Damage-Chance
+        "recoverChance": 40,
+        "destroyChanceOnRecover": 50,
+        "damageChanceOnRecover": 75,
+    }
+}

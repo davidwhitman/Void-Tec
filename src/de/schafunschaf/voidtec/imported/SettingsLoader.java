@@ -2,6 +2,7 @@ package de.schafunschaf.voidtec.imported;
 
 import com.fs.starfarer.api.Global;
 import de.schafunschaf.voidtec.ids.VT_Settings;
+ import de.schafunschaf.voidtec.plugins.VoidTecPlugin;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,11 +10,12 @@ import java.io.IOException;
 
 public class SettingsLoader {
 
-    private static final String FILE_PATH = "modSettings.json";
+    private static final String FILE_PATH = "data/config/modSettings.json";
 
     public static void loadSettings() {
         try {
-            JSONObject settings = Global.getSettings().loadJSON(FILE_PATH);
+            JSONObject settings = Global.getSettings().getMergedJSONForMod(FILE_PATH, VoidTecPlugin.MOD_ID)
+                    .optJSONObject("voidtec");
             VT_Settings.sheepDebug = settings.getBoolean("sheepDebug");
             VT_Settings.enableRemoveHullmodButton = settings.getBoolean("enableRemoveHullmodButton");
             VT_Settings.enableChangeSlotButton = settings.getBoolean("enableChangeSlotButton");
