@@ -27,6 +27,14 @@ public class VT_Settings {
     public static int damageChanceOnDamageTaken = 30;
     public static float chanceReductionPerArmor = 0.07f;
 
+    public static int basePartAmount = 5;
+    public static float basicRepairMod = 3f;
+    public static float primaryRepairMod = 2f;
+    public static float secondaryRepairMod = 1f;
+    public static float basicDisassembleMod = 3f;
+    public static float primaryDisassembleMod = 2f;
+    public static float secondaryDisassembleMod = 1f;
+
     public static boolean iconFlicker = true;
     public static boolean alternativeChestFlagDisplay = false;
 
