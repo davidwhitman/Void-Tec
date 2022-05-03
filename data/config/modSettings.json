@@ -3,6 +3,7 @@
     "sheepDebug": false,
     "enableRemoveHullmodButton": false,
     "enableChangeSlotButton": false,
+    "enablePlayerAugmentBattleDamage": true,
     "aiHullmodChance": 50,
     "aiSlotFillChance": 50,
 

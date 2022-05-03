@@ -19,6 +19,7 @@ public class SettingsLoader {
             VT_Settings.sheepDebug = settings.getBoolean("sheepDebug");
             VT_Settings.enableRemoveHullmodButton = settings.getBoolean("enableRemoveHullmodButton");
             VT_Settings.enableChangeSlotButton = settings.getBoolean("enableChangeSlotButton");
+            VT_Settings.enablePlayerAugmentBattleDamage = settings.getBoolean("enablePlayerAugmentBattleDamage");
             VT_Settings.aiHullmodChance = settings.getInt("aiHullmodChance");
             VT_Settings.aiSlotFillChance = settings.getInt("aiSlotFillChance");
             VT_Settings.recoverChance = settings.getInt("recoverChance");
