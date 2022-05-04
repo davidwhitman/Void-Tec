@@ -4,6 +4,7 @@
     "enableRemoveHullmodButton": false,
     "enableChangeSlotButton": false,
     "enablePlayerAugmentBattleDamage": true,
+    "alwaysExpandTooltips": false,
     "aiHullmodChance": 50,
     "aiSlotFillChance": 50,
 

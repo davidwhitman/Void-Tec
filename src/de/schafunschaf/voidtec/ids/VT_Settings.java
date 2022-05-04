@@ -11,6 +11,7 @@ public class VT_Settings {
     public static boolean enableRemoveHullmodButton = false;
     public static boolean enableChangeSlotButton = false;
     public static boolean enablePlayerAugmentBattleDamage = true;
+    public static boolean alwaysExpandTooltips = false;
     public static boolean randomSlotAmount = false;
     public static boolean hullmodInstallationWithSP = false;
     public static int installCostSP = 1;
