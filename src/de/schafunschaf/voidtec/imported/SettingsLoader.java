@@ -12,7 +12,7 @@ public class SettingsLoader {
 
     private static final String FILE_PATH = "data/config/modSettings.json";
 
-    public static void loadSettings() {
+    public static void loadSettings() throws JSONException, IOException {
         try {
             JSONObject settings = Global.getSettings().getMergedJSONForMod(FILE_PATH, VoidTecPlugin.MOD_ID)
                     .optJSONObject("voidtec");
@@ -34,6 +34,8 @@ public class SettingsLoader {
             VT_Settings.secondaryDisassembleMod = (float) settings.getDouble("secondaryDisassembleModifier");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
+            // I want to know if my settings aren't being read.
+            throw e;
         }
     }
 }
