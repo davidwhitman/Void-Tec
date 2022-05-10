@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Skills;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.ui.*;
@@ -22,7 +23,7 @@ import de.schafunschaf.voidtec.util.ui.ButtonUtils;
 import de.schafunschaf.voidtec.util.ui.UIUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -50,9 +51,11 @@ public class InstallHullmodButton extends DefaultButton {
         playerStats.addBonusXP(bonusXP, false, null, false);
 
         Set<String> permaMods = memberVariant.getPermaMods();
-        String[] sMods = permaMods.toArray(new String[0]);
-        for (int i = sMods.length; i > 0; i--) {
-            memberVariant.removePermaMod(sMods[i - 1]);
+        String[] permaModsArray = permaMods.toArray(new String[0]);
+        for (int i = permaModsArray.length; i > 0; i--) {
+            if (!Global.getSettings().getHullModSpec(permaModsArray[i - 1]).hasTag(Tags.HULLMOD_DMOD)) {
+                memberVariant.removePermaMod(permaModsArray[i - 1]);
+            }
         }
 
         if (!selectedSMod.isEmpty()) {
