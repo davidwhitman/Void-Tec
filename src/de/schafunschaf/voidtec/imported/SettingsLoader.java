@@ -23,6 +23,7 @@ public class SettingsLoader {
             VT_Settings.alwaysExpandTooltips = settings.getBoolean("alwaysExpandTooltips");
             VT_Settings.aiHullmodChance = settings.getInt("aiHullmodChance");
             VT_Settings.aiSlotFillChance = settings.getInt("aiSlotFillChance");
+            VT_Settings.statRollRangeModifier = (float) settings.getDouble("statRollRangeModifier");
             VT_Settings.recoverChance = settings.getInt("recoverChance");
             VT_Settings.destroyChanceOnRecover = settings.getInt("destroyChanceOnRecover");
             VT_Settings.damageChanceOnRecover = settings.getInt("damageChanceOnRecover");
@@ -35,7 +36,7 @@ public class SettingsLoader {
             VT_Settings.secondaryDisassembleMod = (float) settings.getDouble("secondaryDisassembleModifier");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            // I want to know if my settings aren't being read.
+            // We want to know if the settings aren't being read.
             throw e;
         }
     }

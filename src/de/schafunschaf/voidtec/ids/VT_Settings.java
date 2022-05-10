@@ -20,6 +20,7 @@ public class VT_Settings {
     public static int removalCostSP = 1;
     public static int aiHullmodChance = 50;
     public static int aiSlotFillChance = 50;
+    public static float statRollRangeModifier = 1f;
     public static int recoverChance = 30;
     public static int destroyChanceOnRecover = 75;
     public static int damageChanceOnRecover = 75;

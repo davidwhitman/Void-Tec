@@ -8,7 +8,9 @@ import de.schafunschaf.voidtec.combat.vesai.augments.AugmentQuality;
 import de.schafunschaf.voidtec.combat.vesai.statmodifiers.StatApplier;
 import de.schafunschaf.voidtec.combat.vesai.statmodifiers.StatModProvider;
 import de.schafunschaf.voidtec.combat.vesai.statmodifiers.StatModValue;
+import de.schafunschaf.voidtec.ids.VT_Settings;
 import de.schafunschaf.voidtec.plugins.VoidTecPlugin;
+import de.schafunschaf.voidtec.util.MathUtils;
 import lombok.extern.log4j.Log4j;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +55,11 @@ public class AugmentDataLoader {
                 String primaryStatModValueString = row.optString("primaryStatValues");
                 List<StatModValue<Float, Float, Boolean, Boolean>> primaryStatValues = new ArrayList<>();
                 if (!primaryStatModValueString.isEmpty()) {
-                    primaryStatValues = getStatValuesFromString(primaryStatModValueString);
+                    List<StatModValue<Float, Float, Boolean, Boolean>> statValuesFromString = getStatValuesFromString(primaryStatModValueString);
+                    for (int j = 0; j < statValuesFromString.size(); j++) {
+                        statValuesFromString.set(j, applyStatRangeModifier(statValuesFromString.get(j), VT_Settings.statRollRangeModifier));
+                    }
+                    primaryStatValues = statValuesFromString;
                 }
 
                 String secondarySlotString = row.optString("secondarySlots");
@@ -71,7 +77,11 @@ public class AugmentDataLoader {
                 String secondaryStatModValueString = row.optString("secondaryStatValues");
                 List<StatModValue<Float, Float, Boolean, Boolean>> secondaryStatValues = new ArrayList<>();
                 if (!secondaryStatModValueString.isEmpty()) {
-                    secondaryStatValues = getStatValuesFromString(secondaryStatModValueString);
+                    List<StatModValue<Float, Float, Boolean, Boolean>> statValuesFromString = getStatValuesFromString(secondaryStatModValueString);
+                    for (int j = 0; j < statValuesFromString.size(); j++) {
+                        statValuesFromString.set(j, applyStatRangeModifier(statValuesFromString.get(j), VT_Settings.statRollRangeModifier));
+                    }
+                    secondaryStatValues = statValuesFromString;
                 }
 
                 String[] augmentQualityValueString = getSeparatedStrings(row.optString("allowedAugmentQualities"));
@@ -134,6 +144,22 @@ public class AugmentDataLoader {
         }
 
         return statMods;
+    }
+
+    public static StatModValue<Float, Float, Boolean, Boolean> applyStatRangeModifier(StatModValue<Float, Float, Boolean, Boolean> stats, float modifier) {
+        if (stats.minValue == null || stats.maxValue == null) {
+            return stats;
+        }
+
+        float mod = Math.min(1f, 1f - modifier);
+        float halfRange = (stats.maxValue - stats.minValue) / 2;
+
+        return new StatModValue<>(
+                stats.minValue + (halfRange * mod),
+               stats.maxValue - (halfRange * mod),
+                stats.getsModified,
+                stats.invertModifier
+        );
     }
 
     private static List<StatApplier> getStatModsFromString(String statModString) {
