@@ -7,6 +7,7 @@ import com.fs.starfarer.api.combat.ShipVariantAPI;
 import com.fs.starfarer.api.fleet.FleetMemberAPI;
 import com.fs.starfarer.api.graphics.SpriteAPI;
 import com.fs.starfarer.api.impl.campaign.ids.Skills;
+import com.fs.starfarer.api.impl.campaign.ids.Tags;
 import com.fs.starfarer.api.input.InputEventAPI;
 import com.fs.starfarer.api.loading.HullModSpecAPI;
 import com.fs.starfarer.api.ui.*;
@@ -22,7 +23,7 @@ import de.schafunschaf.voidtec.util.ui.ButtonUtils;
 import de.schafunschaf.voidtec.util.ui.UIUtils;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
