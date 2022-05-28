@@ -75,6 +75,7 @@ public class VT_StatModKeys {
     public static final String MOD_SLOT = "mod_slot";
     public static final String TIME_MULT = "time_mult";
 
+    public static final String AMMO_BONUS = "ammo_bonus";
     public static final String BALLISTIC_RANGE = "ballistic_range";
     public static final String BALLISTIC_ROF = "ballistic_rof";
     public static final String ENERGY_RANGE = "energy_range";

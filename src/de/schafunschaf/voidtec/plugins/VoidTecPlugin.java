@@ -47,13 +47,18 @@ public class VoidTecPlugin extends BaseModPlugin {
     }
 
     @Override
-    public void onApplicationLoad() throws JSONException, IOException {
+    public void onApplicationLoad() throws IOException {
         ModLoadingHelper.initStatMods();
-        ModLoadingHelper.loadExternalData();
     }
 
     @Override
     public void onGameLoad(boolean newGame) {
+        try {
+            ModLoadingHelper.loadExternalData();
+        } catch (JSONException  | IOException e) {
+            throw new RuntimeException(e);
+        }
+
         ModLoadingHelper.initManagerAndPlugins();
 
         VT_Settings.isIndEvoActive = Global.getSettings().getModManager().isModEnabled("IndEvo");

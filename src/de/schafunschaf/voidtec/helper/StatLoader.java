@@ -106,6 +106,7 @@ public class StatLoader {
         map.put(SYSTEM_REGEN, new SystemRegen(SYSTEM_REGEN, "System charge regeneration"));
         map.put(SYSTEM_USES, new SystemUses(SYSTEM_USES, "System charge amount"));
 
+        map.put(AMMO_BONUS, new AmmoBonus(AMMO_BONUS, "Ammo/charges"));
         map.put(BALLISTIC_RANGE, new BallisticRange(BALLISTIC_RANGE, "Ballistic weapon range"));
         map.put(BALLISTIC_ROF, new BallisticROF(BALLISTIC_ROF, "Ballistic rate of fire"));
         map.put(ENERGY_RANGE, new EnergyRange(ENERGY_RANGE, "Energy weapon range"));
