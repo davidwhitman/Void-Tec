@@ -21,12 +21,13 @@ public class AmmoBonus extends BaseStatMod {
     @Override
     public void applyToShip(MutableShipStatsAPI stats, String id, StatModValue<Float, Float, Boolean, Boolean> statModValue, long randomSeed,
                             AugmentApplier parentAugment) {
+        float modAmount = 1f + generateModValue(statModValue, randomSeed, parentAugment.getAugmentQuality()) / 100f;
+
         if (parentAugment.getInstalledSlot().getSlotCategory() == SlotCategory.FLIGHT_DECK) {
-            parentAugment.updateFighterStatValue(id + "_" + statID,
-                                                 1f + generateModValue(statModValue, randomSeed, parentAugment.getAugmentQuality()) / 100f);
+            parentAugment.updateFighterStatValue(id + "_" + statID, modAmount);
         } else {
-            stats.getEnergyAmmoBonus().modifyPercent(id, generateModValue(statModValue, randomSeed, parentAugment.getAugmentQuality()));
-            stats.getBallisticAmmoBonus().modifyPercent(id, generateModValue(statModValue, randomSeed, parentAugment.getAugmentQuality()));
+            stats.getEnergyAmmoBonus().modifyMult(id, modAmount);
+            stats.getBallisticAmmoBonus().modifyMult(id, modAmount);
         }
     }
 
@@ -39,7 +40,7 @@ public class AmmoBonus extends BaseStatMod {
     @Override
     public void generateTooltipEntry(MutableShipStatsAPI stats, String id, TooltipMakerAPI tooltip, Color bulletColor,
                                      AugmentApplier parentAugment) {
-        MutableStat.StatMod statMod = stats.getEnergyAmmoBonus().getPercentBonus(id);
+        MutableStat.StatMod statMod = stats.getEnergyAmmoBonus().getMultBonus(id);
 
         String description = "%s %s by %s";
         if (ComparisonTools.isNull(statMod)) {
@@ -70,7 +71,7 @@ public class AmmoBonus extends BaseStatMod {
 
     @Override
     public void applyToFighter(MutableShipStatsAPI stats, String id, float value) {
-        stats.getEnergyAmmoBonus().modifyPercent(id, value);
-        stats.getBallisticAmmoBonus().modifyPercent(id, value);
+        stats.getEnergyAmmoBonus().modifyMult(id, value);
+        stats.getBallisticAmmoBonus().modifyMult(id, value);
     }
 }
